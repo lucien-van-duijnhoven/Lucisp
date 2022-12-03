@@ -62,10 +62,10 @@ LVal lvalValue(long value)
 
 void lvalPrint(LVal v)
 {
-    switch (v.value)
+    switch (v.type)
     {
     case LVAL_NUM:
-        printf(") %li\n", v.value);
+        printf(") %li", v.value);
         break;
 
     case LVAL_ERR:
@@ -88,7 +88,7 @@ void lvalPrint(LVal v)
 
 void lvalPrintln(LVal v)
 {
-    lval_print(v);
+    lvalPrint(v);
     putchar('\n');
 }
 
