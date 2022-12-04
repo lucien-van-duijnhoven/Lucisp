@@ -132,22 +132,26 @@ LVal *lvalRead(mpc_ast_t *t)
         printf("Loop for %llu\n", i);
         if (strcmp(t->children[i]->contents, "(") == 0)
         {
+            puts("Continue (");
             continue;
         }
         if (strcmp(t->children[i]->contents, ")") == 0)
         {
+            puts("Continue )");
             continue;
         }
         if (strcmp(t->children[i]->tag, "regex") == 0)
         {
+            puts("Continue regex");
             continue;
         }
 
         p = lvalConcat(p, lvalRead(t->children[i]));
 
+        printf("Loop struct: %i %s %lo\n", p->type, p->sym, p->value);
         printf("End of loop %llu\n", i);
     }
-    printf("p struct: %i %s %lo\n", p->type, p->sym, p->value);
+    printf("return struct: %i %s %lo\n", p->type, p->sym, p->value);
     return p;
 }
 
